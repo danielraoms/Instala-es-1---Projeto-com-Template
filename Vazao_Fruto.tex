@@ -1,0 +1,40 @@
+F$ = 'R404A'
+
+//State 1
+x[1]=1
+T[1]=-10
+
+h[1]=enthalpy(F$;x=x[1];T=T[1]) 
+s[1]=entropy(F$;x=x[1];T=T[1])
+P[1]=pressure(F$;x=x[1];T=T[1])
+
+//State 3
+x[3] = 0
+T[3] = 40
+
+h[3]=enthalpy(F$;x=x[3];T=T[3])
+s[3]=entropy(F$;x=x[3];T=T[3])
+P[3]=pressure(F$;x=x[3];T=T[3])
+
+//State 3'
+T[4]= T[3]-2,5
+P[4]=P[3]
+
+h[4]=enthalpy(F$;T=T[4];P=P[4])
+
+//State 2
+P[2]=P[3]
+s[2]=s[1]
+
+h[2]=enthalpy(F$;P=P[2];s=s[2])
+T[2]=temperature(F$;P=P[2];s=s[2])
+
+// State 4
+h[5]=h[4]
+P[5]=P[1]
+T[5]=T[1]
+
+s[5]=entropy(F$;h=h[5];P=P[5])
+
+Q_ev = 0,435 [kW]
+f_m = Q_ev/(h[1]-h[4])
